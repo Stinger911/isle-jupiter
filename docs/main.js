@@ -33,6 +33,8 @@ function preload ()
         url: 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js',
         sceneKey: 'rexUI'
     });
+
+    this.load.plugin('rextexteditplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexteditplugin.min.js', true);
 }
 
 function create ()
@@ -55,7 +57,7 @@ function create ()
 
     emitter.startFollow(logo);
 
-    var dialog = this.rexUI.add.dialog({
+/*    var dialog = this.rexUI.add.dialog({
         x: 400,
         y: 300,
 
@@ -105,4 +107,5 @@ function create ()
         .layout()
         // .drawBounds(this.add.graphics(), 0xff0000)
         .popUp(1000);
+*/
 }
