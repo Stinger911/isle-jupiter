@@ -8,6 +8,10 @@ var config = {
             gravity: { y: 200 }
         }
     },
+    scale: {
+        parent: "gamediv",
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
     scene: {
         preload: preload,
         create: create
