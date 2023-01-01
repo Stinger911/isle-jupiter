@@ -8,6 +8,10 @@ var config = {
             gravity: { y: 200 }
         }
     },
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+    },
     scene: {
         preload: preload,
         create: create
@@ -23,7 +27,7 @@ function preload ()
     this.load.image('sky', 'assets/skies/space3.png');
     this.load.image('logo', 'assets/sprites/phaser3-logo.png');
     this.load.image('red', 'assets/particles/red.png');
-/*
+
     this.load.scenePlugin({
         key: 'rexuiplugin',
         url: 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js',
@@ -31,7 +35,6 @@ function preload ()
     });
 
     this.load.plugin('rextexteditplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexteditplugin.min.js', true);
-*/
 }
 
 function create ()
@@ -54,7 +57,7 @@ function create ()
 
     emitter.startFollow(logo);
 
-/*    var dialog = this.rexUI.add.dialog({
+    var dialog = this.rexUI.add.dialog({
         x: 400,
         y: 300,
 
@@ -104,5 +107,36 @@ function create ()
         .layout()
         // .drawBounds(this.add.graphics(), 0xff0000)
         .popUp(1000);
-*/
+
+    this.print = this.add.text(0, 0, '');
+    dialog
+        .on('button.click', function (button, groupName, index) {
+            this.print.text += index + ': ' + button.text + '\n';
+        }, this)
+        .on('button.over', function (button, groupName, index) {
+            button.getElement('background').setStrokeStyle(1, 0xffffff);
+        })
+        .on('button.out', function (button, groupName, index) {
+            button.getElement('background').setStrokeStyle();
+        });
+}
+
+var createLabel = function (scene, text) {
+return scene.rexUI.add.label({
+    // width: 40,
+    // height: 40,
+
+    background: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0x5e92f3),
+
+    text: scene.add.text(0, 0, text, {
+        fontSize: '24px'
+    }),
+
+    space: {
+        left: 10,
+        right: 10,
+        top: 10,
+        bottom: 10
+    }
+});
 }
